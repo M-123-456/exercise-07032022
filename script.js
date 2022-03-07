@@ -76,6 +76,21 @@ console.log(add(nums));
 */
 title("2.1. Recursive Number Adder");
 
+const numbers = [];
+const add = (nums) => {
+  if (nums.length >= 10) {
+  } else {
+    if (nums.length === 0) {
+      nums.push(1);
+    }
+    nums.push(nums[nums.length - 1] + 1);
+    add(nums);
+  }
+  return nums;
+};
+
+console.log(add(numbers));
+
 /*
 2.2. Recursive Counter Function
 
@@ -98,9 +113,9 @@ function counter(value, limit) {
   if (value === limit) {
     console.log(value);
   } else {
-    console.log(value);
+    console.log("going up:", value);
     counter(value + 1, limit);
-    console.log(value);
+    console.log("going down:", value);
   }
 }
 counter(0, 3);
@@ -117,15 +132,19 @@ The function counter gets value and limit as its parameters.
     - it prints out value
 
 for case counter(0, 3)
-1. 0 !== 3, so it goes to the second option.
-2. print out value, which is 0.
-3. recursion function. Parameters = (1, 3)
-4. 1 !==3, so so it goes to the second option.
-5. print out 1 (print: 0 1)
-6. recursion function. Parameters = (2, 3)
-7. print out 2 (print: 0 1 2)
-8. recursion function. Parameters = (3, 3)
-9. 3 === 3, so it prints 3 (print: 0 1 2 3)
+0 !== 3
+> print value: 0
+> recursion (value + 1 = 1)
+  > 1 ! == 3
+  > print value: 1 (0 1)
+  > recursion (value + 1 = 2)
+    > 2 !== 3
+    > print value: 2 (0 1 2)
+    > recursion (value + 1 = 3)
+      > 3 === 3, print 3 (0 1 2 3)
+    > print value: 2 (0 1 2 3 2)
+  > print value: 1 (0 1 2 3 2 1)
+> print value: 0 (0 1 2 3 2 1)
 
 
 /*
